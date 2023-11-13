@@ -35,7 +35,7 @@ npm start
 <img src="https://github.com/Prajwalgawai/StackOverflow_clone/blob/master/client/public/view2.png">
 <img src="https://github.com/Prajwalgawai/StackOverflow_clone/blob/master/client/public/view3.png">
 <img src="https://github.com/Prajwalgawai/StackOverflow_clone/blob/master/client/public/view4.png">
-<img src="https://github.com/Prajwalgawai/StackOverflow_clone/blob/master/client/public/view5.png">
+<img src="https://github.com/Prajwalgawai/StackOverflow_clone/blob/master/client/public/view7.png">
 <img src="https://github.com/Prajwalgawai/StackOverflow_clone/blob/master/client/public/view6.png">
 
 ## Live Link for the website:
