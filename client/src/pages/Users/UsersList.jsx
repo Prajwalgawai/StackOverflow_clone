@@ -9,7 +9,7 @@ const UsersList = () => {
 const users=useSelector((state)=>state.usersReducer);
   
 return (
-    <div className='user-List-container'>
+    <div className='user-list-container'>
       {
         users.map((user)=>{
           return(
