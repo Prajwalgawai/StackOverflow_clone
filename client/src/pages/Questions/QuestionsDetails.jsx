@@ -15,8 +15,10 @@ import DisplayAnswer from "./DisplayAnswer";
 const QuestionsDetails = () => {
   const { id } = useParams();
   const questionsList = useSelector((state) => state.questionsReducer);
+  const weather=useSelector((state)=>state.fetchWeather);
+  // console.log("value of weather is 🤩"+JSON.stringify(weather?.data));
 
-console.log("questions list is"+JSON.stringify(questionsList));
+// console.log("questions list is"+JSON.stringify(questionsList));
 
 
   const Navigate = useNavigate();
@@ -24,6 +26,10 @@ console.log("questions list is"+JSON.stringify(questionsList));
   const User2 = useSelector((state) => state.currentUserReducer);
   const user = useSelector((state) => state.currentUserReducer);
 const User=User2?.result?._id;
+let theme=useSelector((state)=>state.fetchWeather);
+theme="light";
+
+
 
 console.log(JSON.stringify(User2?.result?._id));
   const location = useLocation();
@@ -38,7 +44,7 @@ console.log(JSON.stringify(User2?.result?._id));
   };
 
 const [Answer, setAnswer] = useState("");
-
+const [sumVotes, setSumVotes]=useState(0);
 const handlePostAns=(e,answerLength, id)=>{
 e.preventDefault();
 if(User===null){
@@ -82,7 +88,7 @@ const handleDownVote=(id)=>{
                 <section className="question-details-container">
                   <h1>{question.questionTitle}</h1>
                   <div className="question-details-container-2">
-                    <div className="question-votes">
+                    <div className={`${theme!=="dark"?'question-votes':'question-votes-dark'}`}>
                       <img
                         src={upvote}
                         alt=""
@@ -91,6 +97,7 @@ const handleDownVote=(id)=>{
                   onClick={()=>{handleUpVote(question._id)}}
                       />
                       <p>{question.upVote.length - question.downVote.length}</p>
+                      {/* {setSumVotes(setSumVotes+(question.upVote.length - question.downVote.length))} */}
                       <img
                         src={downvote}
                         alt=""
@@ -151,7 +158,7 @@ const handleDownVote=(id)=>{
                     />
                   </section>
                 )}
-                <section className="post-ans-container">
+                <section className={`${theme!=="dark"?'post-ans-container':'post-ans-container-dark'}`}>
                   <h3>Your Answer</h3>
                   <form onSubmit={(e)=>{handlePostAns(e, question.answer.length, question._id)}}
                    

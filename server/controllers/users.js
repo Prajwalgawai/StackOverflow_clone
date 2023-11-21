@@ -6,7 +6,7 @@ export const getAllUsers=async(req,res)=>{
         const allUsers=await User.find();
         const allUserDetails=[];
         allUsers.forEach(users=>{
-            allUserDetails.push({_id:users._id, name:users.name, about:users.about, tags:users.tags, joinedOn:users.joinedOn});
+            allUserDetails.push({_id:users._id, name:users.name, about:users.about, tags:users.tags, joinedOn:users.joinedOn, answers:users.answers});
         })
         res.status(200).json(allUserDetails);
     }catch(error){
@@ -30,4 +30,16 @@ console.log("name about id and tags is :"+name+" "+about+" "+_id+" "+tags);
 
 res.status(405).json({message:error.message});
     }
+}
+
+
+export const getUser=async(req, res)=>{
+const {id:_id}=req.params;
+try{
+const result=await User.findById(_id);
+res.status(200).json(result);
+
+}catch{
+    res.status(405).json({message:error.message});
+}
 }

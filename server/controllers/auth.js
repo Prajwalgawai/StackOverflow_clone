@@ -14,11 +14,12 @@ if(existinguser){
 }
 
 const hashedPassword=await bcrypt.hash(password, 12);
-const newUser=await users.create({name, email, password:hashedPassword});
+const newUser=await users.create({name, email, password:hashedPassword, answers:[{}]});
 const token =jwt.sign({email:newUser.email, id:newUser._id}, process.env.secret_key, {expiresIn:'1h'});
 res.status(200).json({result:newUser, token});
     }catch(error){
-res.status(500).json("something went wrong...");
+        console.log(error);
+res.status(500).json(error);
     }
 }
 
@@ -34,7 +35,7 @@ console.log("in login fun'n");
         if(!isPasswordCrt){
             return res.status(400).json({message:"Invalid credentials"});
         }
-const token=jwt.sign({email:existinguser.email, id:existinguser._id}, process.env.secret_key, {expiresIn:'1h'});
+const token=jwt.sign({email:existinguser.email, id:existinguser._id,answers:existinguser.answers}, process.env.secret_key, {expiresIn:'1h'});
 res.status(200).json({result:existinguser, token});
 
 

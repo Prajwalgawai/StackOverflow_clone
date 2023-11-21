@@ -6,6 +6,11 @@ const userSchema=mongoose.Schema({
     password:{type:String, required:true},
     about:{type:String},
     tags:{type:[String]},
+    // answers:{type:Number, default:0},
+    answers:
+        [{question_id:{type:String}}]
+    ,
+    reputation:{type:Number, default:0},
     joinedOn:{type:Date, default:Date.now},
 })
 

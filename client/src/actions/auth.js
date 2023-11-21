@@ -6,7 +6,7 @@ export const signup = (authData, navigate) => async (dispatch) => {
   try {
     const { data } = await api.signUp(authData);
     dispatch({ type: "AUTH", data });
-   
+  
     dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
 
     navigate("/");
@@ -19,7 +19,7 @@ export const login = (authData, navigate) => async (dispatch) => {
   try {
     const { data } = await api.logIn(authData);
     dispatch({ type: "AUTH", data });
-    
+    console.log("value of auth with answers is "+JSON.stringify(data));
     dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
 
     navigate("/");
@@ -27,3 +27,4 @@ export const login = (authData, navigate) => async (dispatch) => {
     console.log(error);
   }
 };
+

@@ -87,3 +87,23 @@ export const voteQuestions=async(req, res)=>{
     res.status(404).json({message:"id not found"});
     }
 }
+
+export const countUpvotedQuestions=async(req, res)=>{
+const {userId}=req.params;
+console.log("inside countupvotedquestions📌");
+try{
+    let count=0;
+    const result=await Questions.find({"userId":userId});
+    console.log("countupvoted questions is "+result);
+    result.map((ele)=>{
+        // console.log(ele.upVote.length-ele.downVote.length);
+        if((ele.upVote.length-ele.downVote.length)>=5){
+            count=count+1;
+        }
+    })
+    count=count*10;
+res.status(201).json({data:count});
+}catch(error){
+res.status(404).json({message:"error in question_countUpvoted"});
+}
+}

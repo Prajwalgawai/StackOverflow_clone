@@ -3,11 +3,14 @@ import './RightSidebar.css';
 import comment from '../../assets/comment-alt-solid.svg';
 import pen from '../../assets/pen-solid.svg';
 import blackLogo from "../../assets/blackLogo.svg";
+import { useSelector } from 'react-redux/es/hooks/useSelector';
 const Widget = () => {
+   let theme=useSelector((state)=>state.fetchWeather);
+   theme="light";
   return (
-    <div className='widget'>
+    <div className={`${theme!=="dark"?'widget':'widget-dark'}`}>
       <h4>The overflow blog</h4>
-      <div className='right-sidebar-div-1'>
+      <div   className={`${theme!=="dark"?'right-sidebar-div-1':'right-sidebar-div-1-dark'}`}>
 
       <div className='right-sidebar-div-2'>
        <img src={pen} alt="pen" width='18'/>
@@ -23,7 +26,7 @@ const Widget = () => {
 
 
 <h4>Featured on Meta</h4>
-      <div className='right-sidebar-div-1'>
+      <div className={`${theme!=="dark"?'right-sidebar-div-1':'right-sidebar-div-1-dark'}`}>
 
       <div className='right-sidebar-div-2'>
        <img src={comment} alt="pen" width='18'/>
@@ -41,7 +44,7 @@ const Widget = () => {
 </div>
 
 <h4>Hot Meta Posts</h4>
-      <div className='right-sidebar-div-1'>
+      <div className={`${theme!=="dark"?'right-sidebar-div-1':'right-sidebar-div-1-dark'}`}>
 
       <div className='right-sidebar-div-2'>
        <p>38</p>

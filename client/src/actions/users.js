@@ -9,6 +9,16 @@ console.log(error);
     }
 }
 
+export const getUser=(id)=>async(dispatch)=>{
+    try{
+const {data}=await api.getUser(id);
+console.log("😎😎😎😎"+JSON.stringify(data));
+dispatch({type:'GET_USER_VIA_ID', payload:data});
+    }catch(error){
+        console.log(error);
+    }
+}
+
 export const updateProfile=(id, updateData, location, navigate)=>async(dispatch)=>{
     try{
         

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, useLocation,useNavigate} from 'react-router-dom';
-import { UseSelector, useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector } from 'react-redux';
 import "./HomeMainbar.css";
 import Questions from "./Questions"
 import QuestionList from './QuestionList';
@@ -18,7 +18,8 @@ const user=1;
 const navigate=useNavigate();
 
 const questionsList=useSelector(state=>state.questionsReducer);
-
+let theme=useSelector((state)=>state.fetchWeather);
+theme="light";
 //   var questionsList=[{
 //     id:1,
 //     votes:3,
@@ -67,7 +68,7 @@ const checkAuth=()=>{
   location.pathname==='/'?<h1>Top Questions</h1>: <h1>All Questions</h1>
 }
 
-<button to="/AskQuestions" className='ask-btn' onClick={checkAuth}>Ask Questions</button>
+<button to="/AskQuestions" className={`${theme!=="dark"?'ask-btn':'ask-btn-dark'}`} onClick={checkAuth}>Ask Questions</button>
 
       </div>
 
@@ -86,4 +87,4 @@ const checkAuth=()=>{
   )
 }
 
-export default HomeMainbar
+export default HomeMainbar;

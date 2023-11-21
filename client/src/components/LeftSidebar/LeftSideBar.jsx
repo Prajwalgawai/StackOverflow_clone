@@ -9,12 +9,14 @@ const LeftSidebar = () => {
   const User2 = useSelector((state) => state.currentUserReducer);
 const User=User2?.result?._id;
 
+let theme=useSelector((state)=>state.fetchWeather);
+theme="light";
 
   return (
 
     <div className='left-sidebar'>
       <nav className='side-nav'>
-<NavLink to='/' className='side-nav-links' activeClassName='active'>
+<NavLink to='/' className={`${theme!=="dark"?'side-nav-links':'side-nav-links-dark'}`} activeClassName={theme !== "dark" ? 'active' : 'active-dark'} >
 
 <div>
 <p>Home</p>
@@ -22,19 +24,13 @@ const User=User2?.result?._id;
 
 </NavLink>
 <div className="side-nav-div">
-
     <div style={{paddingBottom:'10px'}}>
         <p>PUBLIC</p>
         </div>
-
-
         <div>
-
-
-        <NavLink to={`/Questions/${User}`} className="side-nav-links" activeClassName='active' style={{paddingLeft:"12px"}}>
+        <NavLink to={`/Questions/${User}`} className={`${theme!=="dark"?'side-nav-links':'side-nav-links-dark'}`} activeClassName={theme !== "dark" ? 'active' : 'active-dark'} style={{paddingLeft:"12px"}}>
             <img src="https://stack-overflow-clone-1.netlify.app/static/media/Globe.b4c9a5d9.svg" alt="Globe" />
             
-           
             <p style={{paddingLeft:"10px"}}>
                 Questions
             </p>
@@ -42,12 +38,12 @@ const User=User2?.result?._id;
         </NavLink>
         </div>
         <div>
-        <NavLink to="/Tags" className="side-nav-links" activeClassName='active' style={{paddingLeft:"40px"}}>
+        <NavLink to="/Tags" className={`${theme!=="dark"?'side-nav-links':'side-nav-links-dark'}`} activeClassName={theme !== "dark" ? 'active' : 'active-dark'} style={{paddingLeft:"40px"}}>
             <p>Tags</p>
         </NavLink>
         </div>
         <div>
-        <NavLink to="/Users" className="side-nav-links" activeClassName='active' style={{paddingLeft:"40px"}}>
+        <NavLink to="/Users" className={`${theme!=="dark"?'side-nav-links':'side-nav-links-dark'}`} activeClassName={theme !== "dark" ? 'active' : 'active-dark'} style={{paddingLeft:"40px"}}>
             <p>Users</p>
         </NavLink>
         </div>

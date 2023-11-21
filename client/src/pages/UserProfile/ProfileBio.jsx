@@ -1,9 +1,15 @@
 import React from 'react'
+import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 const ProfileBio = ({currentProfile}) => {
+
+  let theme=useSelector((state)=>state.fetchWeather);
+theme="light";
+
   return (
-    <div>
-       <div>
+    <div className={`${theme!=="dark"?'profile':'profile-dark'}`}>
+      <div>
+       <div className={`${theme!=="dark"?'tags-watched':'tags-watched-dark'}`}>
         {
       currentProfile?.tags.length!==0?(
         <>
@@ -19,8 +25,10 @@ const ProfileBio = ({currentProfile}) => {
       )
 }
 </div>
+</div>
 
 <div>
+<div className={`${theme!=="dark"?'about-profile':'about-profile-dark'}`}>
     {
       currentProfile?.about?(
 <>
@@ -31,6 +39,7 @@ const ProfileBio = ({currentProfile}) => {
         <p>No bio found</p>
       )  
     }
+    </div>
     </div>
 
     </div>

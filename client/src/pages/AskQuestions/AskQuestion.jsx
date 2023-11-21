@@ -13,7 +13,8 @@ const AskQuestion = () => {
   const User=useSelector((state)=>state.currentUserReducer);
   const User2=useSelector((state)=>state.currentUserReducer);
 const navigate=useNavigate();
-
+let theme=useSelector((state)=>state.fetchWeather);
+theme="light";
 
 
 
@@ -38,11 +39,11 @@ setQuestionBody(questionBody + "\n");
   
   
   return (
+  
 
-
-      <div className="ask-question">
+      <div className={`${theme!=="dark"?'ask-question':'ask-question-dark'}`}>
        
-        <div className="ask-ques-container">
+        <div className={`${theme!=="dark"?'ask-ques-container':'ask-ques-container-dark'}`}>
         <h1>Ask a public Question </h1>
      <form onSubmit={handleSubmit}>
         <div className="ask-form-container">
@@ -64,7 +65,7 @@ setQuestionBody(questionBody + "\n");
                          {/* //important it split the text into array when every " " comes and every thing bet'n two spaces becomes each element of an array.👆 */}
             </label>
         </div>
-        <input type="submit" value="Review your question" className="review-btn"/>
+        <input type="submit" value="Review your question" className={`${theme!=="dark"?'review-btn':'review-btn-dark'}`}/>
      </form>
       </div>
       </div>

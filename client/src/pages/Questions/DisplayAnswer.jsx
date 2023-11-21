@@ -29,7 +29,7 @@ const DisplayAnswer = ({question}) => {
  
 
 const handleDelete=(id, answerId, noOfAnswers)=>{
-dispatch(deleteAnswer(id, answerId, noOfAnswers-1))
+dispatch(deleteAnswer(id, answerId, noOfAnswers-1,User));
 }
 
 

@@ -14,12 +14,40 @@
   color: black;
 }
 
+.user-profile-link-dark {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: #037ecb;
+}
+
+.user-profile-link-dark:hover{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: #009dff;
+}
+
+
+
 .user-profile-link h3 {
   padding: 10px 13px;
   background-color: #d3d3d3;
   border-radius: 50%;
 }
+.user-profile-link-dark h3 {
+  padding: 10px 13px;
+  background-color: #d3d3d3;
+  color: black;
+  border-radius: 50%;
+}
 
 .user-profile-link h5 {
+  margin: 0px 10px;
+}
+
+.user-profile-link-dark h5 {
   margin: 0px 10px;
 }

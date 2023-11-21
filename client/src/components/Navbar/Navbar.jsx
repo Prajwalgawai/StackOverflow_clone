@@ -16,6 +16,8 @@ const dispatch=useDispatch();
 const Navigate=useNavigate();
 var User= useSelector((state)=>(state.currentUserReducer));
 
+let theme=useSelector((state)=>state.fetchWeather);
+theme="light";
 
 
 
@@ -44,32 +46,32 @@ dispatch(setCurrentUser(JSON.parse(localStorage.getItem('Profile'))));
 
     // let User=JSON.parse(localStorage.getItem('Profile'));
   return (
-    <nav className='main-nav'>
+    <nav  className={`${theme!=="dark"?'main-nav':'main-nav-dark'}`}>
       <div className="navbar">
-<Link to='/' className='nav-item nav-logo'>
+<Link to='/' className={`${theme!=="dark"?'nav-item nav-logo':'nav-item-dark nav-logo-dark'}`} >
     <img src={Logo} alt="logo" width="150px" height="30px"/>
 </Link>
 
-<Link to='/' className='nav-item nav-btn'>
+<Link to='/'  className={`${theme!=="dark"?'nav-item nav-btn':'nav-item-dark nav-btn-dark'}`}>
 About
 </Link>
 
-<Link to='/' className='nav-item nav-btn'>
+<Link to='/' className={`${theme!=="dark"?'nav-item nav-btn':'nav-item-dark nav-btn-dark'}`}>
 Products
 </Link>
 
-<Link to='/' className='nav-item nav-btn'>
+<Link to='/' className={`${theme!=="dark"?'nav-item nav-btn':'nav-item-dark nav-btn-dark'}`}>
 For Teams
 </Link>
 
 <form action="" className='change'>
-    <input type="text" placeholder='search...'/>
-    <img style={{position:"absolute", left:"28px", top:"9.5px"}} src={search} alt="search" width={18}/>
+    <input className={`${theme!=="dark"?'search-input':'search-input-dark'}`} type="text" placeholder='search...'/>
+    <img style={{position:"absolute", left:"28px", top:"9.5px"}} src={search} alt="search" width={18} className={theme==='dark'?'invert_search_icon':''}/>
 </form>
 <div style={{display:"flex"}}>
 
 
-{User===null?<Link to='/Auth' className='nav-item nav-links'>Log in</Link>:
+{User===null?<Link to='/Auth' className={`${theme!=="dark"?'nav-item nav-links':'nav-item-dark nav-links-dark'}`}>Log in</Link>:
 <>
 
     <Avatar backgroundColor="#009dff" px="12px" py="7px" borderRadius="50%" color="white"><Link to={`/User/${User?.result?._id}`} style={{color:"white", textDecoration:"none"
@@ -85,4 +87,4 @@ For Teams
   )
 }
 
-export default Navbar
+export default Navbar;

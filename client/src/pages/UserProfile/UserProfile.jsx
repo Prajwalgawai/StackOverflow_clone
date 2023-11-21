@@ -8,7 +8,10 @@ import {faBirthdayCake, faPen} from '@fortawesome/free-solid-svg-icons';
 import moment from "moment";
 import EditProfileForm from "./EditProfileForm";
 import ProfileBio from "./ProfileBio";
+import Badges from "./Badges";
+import Stats from './Stats';
 import './UsersProfile.css';
+
 
 const UserProfile = ({ slideIn, handleSlideIn }) => {
   const { id } = useParams();
@@ -61,11 +64,24 @@ const handleSwitch=()=>{
            {Switch ?(
             <EditProfileForm currentUser={currentUser} setSwitch={setSwitch}/>
            ):(
+            <div className="profile_bio">
+            <div className="profile_bio_bio">
             <ProfileBio currentProfile={currentProfile}/>
+            </div>
+            <div className="profile_bio_badges">
+             <Stats/>
+            <Badges/>
+            </div>
+            </div>
            )}
           </>
+         
         </section>
+
+   
+    
       </div>
+    
     </div>
   );
 };

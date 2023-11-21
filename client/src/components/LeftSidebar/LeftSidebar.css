@@ -38,10 +38,29 @@
     height:40px;
 }
 
+.side-nav-links-dark {
+    text-decoration: none;
+    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+    transition:0.2s;
+
+    height:40px;
+}
+.side-nav-links-dark img{
+filter:invert(100%);
+}
 
 
 .side-nav-links:hover{
     color:black;
+}
+
+.side-nav-links-dark:hover{
+    color:white;
+    background-color: #3a3a3a;
 }
 
 .active{
@@ -49,6 +68,11 @@
     color:black;
     background-color: #e1e1e1;
     border-right: solid 3px #ef8236;
+}
 
-
+.active-dark{
+    font-weight:bolder;
+    color:white;
+    background-color: hsl(210,4%,21%);
+    border-right: solid 3px #e2d8d1;
 }
