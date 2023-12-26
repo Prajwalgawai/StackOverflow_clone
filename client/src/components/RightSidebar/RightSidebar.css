@@ -142,6 +142,7 @@ background-color: #e1ecf4;
 color:#39739d;
 border-radius: 2px;
 font-size:14px;
+margin:2px 0px 2px 0px;
 }
 
 
@@ -165,4 +166,49 @@ font-size:14px;
     color:#edeff0e2;
     border-radius: 2px;
     font-size:14px;
+    margin:2px 0px 2px 0px;
     }
+
+
+    @media (max-width: 980px) {
+        .right-sidebar{
+           width: 77vw;
+           margin-top: 0px;
+       }   
+       .right-sidebar-div-1 .right-sidebar-div-2{
+        display:flex;
+        align-items: flex-start;
+        justify-content:normal;
+     
+    }
+
+    .right-sidebar-dark{
+        width: 77vw;
+        margin-top: 0px;
+    }   
+    .right-sidebar-div-1-dark .right-sidebar-div-2{
+     display:flex;
+     align-items: flex-start;
+     justify-content:normal;
+  
+ }
+
+
+       } 
+
+       @media (max-width: 640px) {
+        .right-sidebar{
+            width: 92vw;
+            margin-top: 0px;
+        }  
+        
+
+        .right-sidebar-dark{
+            width: 92vw;
+            margin-top: 0px;
+        }  
+       } 
+
+      
+
+       

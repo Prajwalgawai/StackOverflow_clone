@@ -76,3 +76,16 @@ filter:invert(100%);
     background-color: hsl(210,4%,21%);
     border-right: solid 3px #e2d8d1;
 }
+.hamberger{
+    
+    display: none;
+}
+
+@media (max-width:640px){
+    .hamberger{
+        display: block;
+    }
+    .hamberger-dark{
+        display: block;
+    }
+}

@@ -5,6 +5,7 @@ import { jwtDecode as decode } from "jwt-decode";
 
 // import logo from '../../assets/logo.png';
 import "./Navbar.css";
+import '../../App.css';
 import Logo from "../../assets/logo.png";
 import { setCurrentUser } from '../../actions/currentUser';
 import search from '../../assets/search.svg'
@@ -17,7 +18,8 @@ const Navigate=useNavigate();
 var User= useSelector((state)=>(state.currentUserReducer));
 
 let theme=useSelector((state)=>state.fetchWeather);
-theme="light";
+// theme="light";
+theme=theme?.data
 
 
 
@@ -41,17 +43,29 @@ dispatch(setCurrentUser(JSON.parse(localStorage.getItem('Profile'))));
 
 
 
-
+const activeHamberger=()=>{
+  
+  if(theme==="dark"){
+    document.querySelector(".left-sidebar-dark")?.classList.toggle("activeHamberclass-dark");
+  }else{
+    document.querySelector(".left-sidebar")?.classList.toggle("activeHamberclass");
+  }
+  
+ 
+}
 
 
     // let User=JSON.parse(localStorage.getItem('Profile'));
   return (
     <nav  className={`${theme!=="dark"?'main-nav':'main-nav-dark'}`}>
       <div className="navbar">
+        <Link className='hamberger' onClick={activeHamberger}>
+        <img src='./bars-solid.svg' alt="" />
+        </Link>
 <Link to='/' className={`${theme!=="dark"?'nav-item nav-logo':'nav-item-dark nav-logo-dark'}`} >
     <img src={Logo} alt="logo" width="150px" height="30px"/>
 </Link>
-
+<div className='about-pr-tm'>
 <Link to='/'  className={`${theme!=="dark"?'nav-item nav-btn':'nav-item-dark nav-btn-dark'}`}>
 About
 </Link>
@@ -63,20 +77,23 @@ Products
 <Link to='/' className={`${theme!=="dark"?'nav-item nav-btn':'nav-item-dark nav-btn-dark'}`}>
 For Teams
 </Link>
+</div>
 
 <form action="" className='change'>
-    <input className={`${theme!=="dark"?'search-input':'search-input-dark'}`} type="text" placeholder='search...'/>
-    <img style={{position:"absolute", left:"28px", top:"9.5px"}} src={search} alt="search" width={18} className={theme==='dark'?'invert_search_icon':''}/>
+    <input id="search-input-tag" className={`${theme!=="dark"?'search-input':'search-input-dark'}`} type="text" placeholder='search...'/>
+    <img  src={search} alt="search" width={18} className={theme==='dark'?'invert_search_icon':''}/>
 </form>
+
 <div style={{display:"flex"}}>
 
 
 {User===null?<Link to='/Auth' className={`${theme!=="dark"?'nav-item nav-links':'nav-item-dark nav-links-dark'}`}>Log in</Link>:
 <>
-
-    <Avatar backgroundColor="#009dff" px="12px" py="7px" borderRadius="50%" color="white"><Link to={`/User/${User?.result?._id}`} style={{color:"white", textDecoration:"none"
+<div style={{marginRight:"2px"}}>
+    <Avatar  backgroundColor="#009dff" px="12px" py="7px"  borderRadius="50%" color="white"><Link to={`/User/${User?.result?._id}`} style={{color:"white", textDecoration:"none"
 }}>{User?.result?.name.charAt(0)}</Link>
 </Avatar>
+</div>
     <button className='nav-item nav-links' backgroundColor="#009dff" px="10px" py="7px" borderRadius="50%" color="white"
   onClick={handleLogout} >Log out</button>
 </>

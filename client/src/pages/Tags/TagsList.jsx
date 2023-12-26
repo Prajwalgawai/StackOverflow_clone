@@ -6,7 +6,8 @@ import "./Tags.css";
 const TagsList = ({ tag }) => {
 
   let theme=useSelector((state)=>state.fetchWeather);
-  theme="light";
+  // theme="light";
+  theme=theme?.data
 
   return (
     <div className={`${theme!=="dark"?'tag':'tag-dark'}`}>

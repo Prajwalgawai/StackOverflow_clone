@@ -19,7 +19,8 @@ const navigate=useNavigate();
 
 const questionsList=useSelector(state=>state.questionsReducer);
 let theme=useSelector((state)=>state.fetchWeather);
-theme="light";
+theme=theme?.data
+// theme="light";
 //   var questionsList=[{
 //     id:1,
 //     votes:3,

@@ -8,8 +8,23 @@ const questionsReducers=(state={data:null}, action)=>{
             
         case 'FETCH_ALL_QUESTIONS':
             return {...state, data:action.payload}
+
+        case 'FETCH_MY_QUESTIONS':
+            return {...state, data:action.payload}
+        
+        default:
+            return state;  
+    }
+}
+export const myquestionsReducers=(state={data:null}, action)=>{
+    switch(action.type){
+       
+        case 'FETCH_MY_QUESTIONS':
+            return {...state, data:action.payload}
+        
         default:
             return state;  
     }
 }
 export default questionsReducers;
+

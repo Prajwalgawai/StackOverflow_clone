@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 const ProfileBio = ({currentProfile}) => {
 
   let theme=useSelector((state)=>state.fetchWeather);
-theme="light";
+// theme="light";
+theme=theme?.data
 
   return (
     <div className={`${theme!=="dark"?'profile':'profile-dark'}`}>

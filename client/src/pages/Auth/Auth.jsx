@@ -1,6 +1,7 @@
 import React from 'react'
 import  {useState, useEffect} from "react";
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import icon from '../../assets/favicon.png'
 import AboutAuth from "./AboutAuth";
@@ -43,14 +44,19 @@ if(isSignup){
 }
 
   }
+  let theme=useSelector((state)=>state.fetchWeather);
+theme=theme?.data;
 
-
-
-
+//   
   return (
 
-    <section className='auth-section'>
+    <section className={`${theme!=="dark"?'auth-section':'auth-section-dark'}`}>
+        <div className='cont-1' >
+<div>
+    
         {isSignup && <AboutAuth/>}
+</div>
+        </div>
         <div className="auth-container-2">
         <img src={icon} alt="stack overflow" className='' width={32} height={37}/>
         

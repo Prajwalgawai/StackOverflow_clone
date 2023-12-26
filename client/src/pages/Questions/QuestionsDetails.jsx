@@ -1,113 +1,122 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
-
 import copy from "copy-to-clipboard";
-import {postAnswer,deleteQuestion,voteQuestion }from '../../actions/question';
+import { postAnswer, deleteQuestion, voteQuestion } from "../../actions/question";
 import upvote from "../../assets/sort-up.svg";
 import downvote from "../../assets/sort-down.svg";
 import "./Questions.css";
+import '../../App.css'
 import Avatar from "../../components/Avatar/Avatar";
 import DisplayAnswer from "./DisplayAnswer";
 
-
 const QuestionsDetails = () => {
-  const { id } = useParams();
+  
+  const location = useLocation();
+  const { id , user_id} = useParams();
+
   const questionsList = useSelector((state) => state.questionsReducer);
-  const weather=useSelector((state)=>state.fetchWeather);
-  // console.log("value of weather is 🤩"+JSON.stringify(weather?.data));
-
-// console.log("questions list is"+JSON.stringify(questionsList));
-
-
+  const weather = useSelector((state) => state.fetchWeather);
   const Navigate = useNavigate();
   const dispatch = useDispatch();
   const User2 = useSelector((state) => state.currentUserReducer);
   const user = useSelector((state) => state.currentUserReducer);
-const User=User2?.result?._id;
-let theme=useSelector((state)=>state.fetchWeather);
-theme="light";
+  const User = User2?.result?._id;
+  let theme = useSelector((state) => state.fetchWeather);
+  // theme = "light";
+  theme=theme?.data
+  const [Answer, setAnswer] = useState("");
+  const [sumVotes, setSumVotes] = useState(0);
 
-
-
-console.log(JSON.stringify(User2?.result?._id));
-  const location = useLocation();
-  const url = "http://localhost:3000";
-
- 
-
-  const handleShare = () => {
-   
-    copy(url + location.pathname);
-    alert("Copied url : " + url + location.pathname);
+  const handlePostAns = (e, answerLength, id) => {
+    e.preventDefault();
+    if (User === null) {
+      alert("Login or Signup to answer a question");
+      Navigate("/Auth");
+    } else {
+      if (Answer === "") {
+        alert("Enter an answer before submitting");
+      } else {
+        alert("dispatch successful");
+        dispatch(
+          postAnswer({
+            id,
+            noOfAnswers: answerLength + 1,
+            answerBody: Answer,
+            userAnswered: user?.result?.name,
+            userId: User,
+          })
+        );
+      }
+    }
   };
 
-const [Answer, setAnswer] = useState("");
-const [sumVotes, setSumVotes]=useState(0);
-const handlePostAns=(e,answerLength, id)=>{
-e.preventDefault();
-if(User===null){
-alert('Login or Signup to answer a question');
-Navigate('/Auth');
-}else{
-  if(Answer === ''){
-alert('Enter a answer before submitting');
-  }else {
-    alert("dispatch successfull");
-    dispatch(postAnswer({id, noOfAnswers:answerLength+1, answerBody:Answer, userAnswered:user?.result?.name, userId:User}));
-  }
-}
-}
+  const handleDelete = (que_id) => {
+    dispatch(deleteQuestion(que_id, Navigate));
+  };
 
-const handleDelete=(que_id)=>{
-  dispatch(deleteQuestion(que_id, Navigate));
-}
+  const handleUpVote = (id) => {
+    dispatch(voteQuestion(id, "upVote", User));
+  };
 
+  const [loading, setLoading]=useState(false);
 
+  const handleDownVote = (id) => {
+    dispatch(voteQuestion(id, "downVote", User));
+  };
 
-const handleUpVote=(id)=>{
-  dispatch(voteQuestion(id, 'upVote', User))
-}
-
-const handleDownVote=(id)=>{
-  dispatch(voteQuestion(id, 'downVote', User))
-}
-
+  const handleShare = () => {
+    
+    const url = "http://localhost:3000";
+    copy(url + location.pathname);
+    alert("Copied url: " + url + location.pathname);
+  };
+  var valu=false;
 
   return (
-    <div className="question-details-page">
-      {questionsList.data === null ? (
+    <div className={`${theme!=="dark"?"question-details-page":"question-details-page-dark"}`}>
+      
+      {questionsList.data === null ? 
         <h1>Loading...</h1>
-      ) : (
+       : (
         <>
           {questionsList.data
-            .filter((question) => question.userId === User)
+            .filter((question) => (question._id === id || (id==="user" && question.userId===user_id)))
             .map((question) => (
+
               <div key={question._id}>
+                {valu=true}
                 <section className="question-details-container">
                   <h1>{question.questionTitle}</h1>
                   <div className="question-details-container-2">
-                    <div className={`${theme!=="dark"?'question-votes':'question-votes-dark'}`}>
+                    <div className={`${theme !== "dark" ? "question-votes" : "question-votes-dark"}`}>
                       <img
                         src={upvote}
                         alt=""
                         width="18"
                         className="votes-icon"
-                  onClick={()=>{handleUpVote(question._id)}}
+                        onClick={() => {
+                          handleUpVote(question._id);
+                        }}
                       />
+                     
                       <p>{question.upVote.length - question.downVote.length}</p>
-                      {/* {setSumVotes(setSumVotes+(question.upVote.length - question.downVote.length))} */}
                       <img
                         src={downvote}
                         alt=""
                         width="18"
                         className="votes-icon"
-                       onClick={()=>{handleDownVote(question._id)}}
+                        onClick={() => {
+                          handleDownVote(question._id);
+                        }}
                       />
                     </div>
                     <div style={{ width: "100%" }}>
-                      <p className="question-body">{question.questionBody}</p>
+                      <div
+                        className="question-body"
+                        dangerouslySetInnerHTML={{ __html: question.questionBody }}
+                      ></div>
                       <div className="question-details-tags">
                         {question.questionTags.map((tag) => (
                           <p key={tag}>{tag}</p>
@@ -115,13 +124,11 @@ const handleDownVote=(id)=>{
                       </div>
                       <div className="question-actions-user">
                         <div>
-                          <button type="button" onClick={()=>handleShare()}>
+                          <button type="button" onClick={handleShare}>
                             Share
                           </button>
                           {User === question?.userId && (
-                            <button type="button" onClick={()=>{
-                              handleDelete(question._id)
-                            }}>
+                            <button type="button" onClick={() => handleDelete(question._id)}>
                               Delete
                             </button>
                           )}
@@ -158,11 +165,11 @@ const handleDownVote=(id)=>{
                     />
                   </section>
                 )}
-                <section className={`${theme!=="dark"?'post-ans-container':'post-ans-container-dark'}`}>
+                <section
+                  className={`${theme !== "dark" ? "post-ans-container" : "post-ans-container-dark"}`}
+                >
                   <h3>Your Answer</h3>
-                  <form onSubmit={(e)=>{handlePostAns(e, question.answer.length, question._id)}}
-                   
-                  >
+                  <form onSubmit={(e) => handlePostAns(e, question.answer.length, question._id)}>
                     <textarea
                       name=""
                       id=""
@@ -198,9 +205,12 @@ const handleDownVote=(id)=>{
                 </section>
               </div>
             ))}
+            
         </>
       )}
+     {valu === false?<h2>Either you haven't sign in or havent ask any question yet.</h2>:""}
     </div>
+    
   );
 };
 

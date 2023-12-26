@@ -1,5 +1,6 @@
 import React from 'react'
-import '../../App.css';
+import '../../App.css'
+
 import LeftSidebar from "../../components/LeftSidebar/LeftSideBar";
 import RightSidebar from "../../components/RightSidebar/RightSidebar";
 import HomeMainbar from "../../components/HomeMainbar/HomeMainbar";

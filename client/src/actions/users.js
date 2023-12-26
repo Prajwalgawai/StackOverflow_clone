@@ -12,7 +12,7 @@ console.log(error);
 export const getUser=(id)=>async(dispatch)=>{
     try{
 const {data}=await api.getUser(id);
-console.log("😎😎😎😎"+JSON.stringify(data));
+
 dispatch({type:'GET_USER_VIA_ID', payload:data});
     }catch(error){
         console.log(error);
@@ -22,7 +22,7 @@ dispatch({type:'GET_USER_VIA_ID', payload:data});
 export const updateProfile=(id, updateData, location, navigate)=>async(dispatch)=>{
     try{
         
-        console.log("locatoin is  :"+(location.pathname));
+        // console.log("locatoin is  :"+(location.pathname));
 const {data}=await api.updateProfile(id, updateData);
 dispatch({type:'UPDATE_CURRENT_USER', payload:data});
 

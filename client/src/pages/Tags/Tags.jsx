@@ -3,11 +3,14 @@ import React from "react";
 import LeftSidebar from "../../components/LeftSidebar/LeftSideBar";
 import TagsList from "./TagsList";
 import "./Tags.css";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import { tagsList } from "./tagList";
 
 const Tags = ({ slideIn, handleSlideIn }) => {
+  let theme=useSelector((state)=>state.fetchWeather);
+  theme=theme?.data;
   return (
-    <div className="home-container-1">
+    <div className={`${theme!=="dark"?"home-container-1":"home-container-1-dark"}`}>
       <LeftSidebar slideIn={slideIn} handleSlideIn={handleSlideIn} />
       <div className="home-container-2">
         <h1 className="tags-h1">Tags</h1>

@@ -6,7 +6,8 @@ import usersReducer from './users.js';
 import fetchWeather from './fetchWeather.js';
 import questionVoteScore from './questionVoteScore.js';
 import getUser from './getUser.js';
+import {myquestionsReducers} from './questions.js';
 export default combineReducers({
         authReducer, currentUserReducer, questionsReducer, usersReducer,
-        fetchWeather,questionVoteScore,getUser
+        fetchWeather,questionVoteScore,getUser,myquestionsReducers
 })

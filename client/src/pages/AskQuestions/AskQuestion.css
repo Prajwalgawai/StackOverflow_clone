@@ -1,11 +1,13 @@
 .ask-question {
-    min-height: 80vh;
+    min-height: 100vh;
     background-color: #f1f2f3;
+
   }
   
   .ask-question-dark {
     min-height: 80vh;
     background-color: hsla(204, 5%, 21%, 0.832);
+    color:white;
   }
 
   .ask-ques-container {
@@ -38,13 +40,24 @@
       0 1px 4px rgb(0 0 0 / 10%);
   }
 
-  .ask-ques-container-dark form .ask-form-container {
+  .ask-ques-container-dark form .ask-form-container{
     padding: 20px;
     background-color: hsl(210,3%,15%);
     border-radius: 3px;
     box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%),
       0 1px 4px rgb(0 0 0 / 10%);
   }
+
+@media (max-width:600px){
+ .ask-form-container input{
+   font-size:8px;
+  }
+  .ask-form-container-dark input{
+    font-size:8px;
+    color:white;
+   }
+
+}
   
   .ask-form-container label h4 {
     margin-bottom: 0%;
@@ -65,7 +78,21 @@
     font-family: "Roboto", sans-serif;
     width: calc(100% - 20px);
     resize: none;
+    
   }
+
+  .ask-question-dark .ask-form-container label input,
+  .ask-form-container label textarea {
+    padding: 10px;
+    border: solid 1px #0000003e;
+    font-family: "Roboto", sans-serif;
+    width: calc(100% - 20px);
+    resize: none;
+    background-color:  hsl(210,3%,15%);
+    color:white;
+  }
+
+ 
 
   .ask-question-dark label textarea {
     padding: 10px;
@@ -74,6 +101,7 @@
     width: calc(100% - 20px);
     resize: none;
     background-color:hsl(210,3%,15%)
+
   }
   
   .review-btn {
@@ -100,3 +128,73 @@
   .review-btn-dark:hover {
     background-color: #86d1ff;
   }
+
+  .text-edit-1{
+    display: flex;
+
+  }
+  .text-edit-2{
+    display: flex;
+
+    justify-content: space-between;
+    width:60%;
+  }
+
+  .text-edit-2 div:hover{ 
+  cursor: pointer;
+  }
+
+
+  .editor1 {
+    border: solid 1px #0000003e;
+    min-height: 250px; 
+    resize: vertical; 
+    overflow: auto; 
+    
+  }
+  .ask-question-dark  .editor1 img{
+filter:brightness(0) invert(1);
+  }
+
+  .ask-ques-body{
+    height: 250px;
+  }
+
+.editor-tools {
+    display: flex;
+justify-content: space-between;
+width: 400px;
+border: none;
+
+margin: 4px;
+  }
+
+  .editor-tools button{
+    display: flex;
+    display: none;
+  }
+
+   div:focus {
+outline:none;
+
+  }
+
+  .editor1:focus-within {
+    /* border: 2px solid rgb(49, 107, 207); */
+    border: 2px solid  #f5f5f5;
+   
+  }
+
+  .code-block {
+    background-color: #f5f5f5;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+
+  #ask-ques-title:focus-within{
+    font-size:8px;
+    color:white;
+    border: 2px solid rgb(49, 107, 207);
+   }

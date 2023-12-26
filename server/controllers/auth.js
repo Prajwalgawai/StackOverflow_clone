@@ -26,7 +26,7 @@ res.status(500).json(error);
 export const login = async(req, res)=>{
      const {email, password}=req.body;
      try{
-console.log("in login fun'n");
+
         const existinguser=await users.findOne({email});
         if(!existinguser){
             return res.status(404).json({message:"User don't Exist."});

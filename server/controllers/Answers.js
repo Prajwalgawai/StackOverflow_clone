@@ -21,7 +21,7 @@ export const postAnswer = async (req, res) => {
         $addToSet: { answer: [{ answerBody, userAnswered, userId }] },
       });
 
-      console.log(updatedQuestion);
+      // console.log(updatedQuestion);
       res.status(200).json(updatedQuestion);
     } catch (error) {
       res.status(400).json('error in updating');
@@ -43,7 +43,7 @@ let result=0;
 if(operation=="increase_count"){
   //  result=await users.findByIdAndUpdate({_id:userId}, {$set:{'answers':answers+1}}, {new:true});
   const temp_answers=await users.findById({_id:userId});
-  console.log("updated ans count array"+temp_answers?.answers);
+  // console.log("updated ans count array"+temp_answers?.answers);
   let a=0;
   temp_answers?.answers.map((ele)=>{
     if(ele.question_id===question_Id){
@@ -52,15 +52,15 @@ if(operation=="increase_count"){
   })
   if(a===0){
     const result=await users.findByIdAndUpdate({_id:userId}, {$addToSet:{answers:[{question_id:question_Id}]}}, {new:true});
-    console.log("new answers updated "+result);
+    // console.log("new answers updated "+result);
   }
 
 }else if(operation=="decrease_count"){
   result=await users.findByIdAndUpdate({_id:userId}, {$pull:{'answers':{question_id:question_Id}}}, {new:true});
-  console.log("answers from user auth deleted "+result);
+  // console.log("answers from user auth deleted "+result);
   //  result=await users.findByIdAndUpdate({_id:userId}, {$set:{'answers':answers-1}}, {new:true});
 }
-console.log("updated ans count"+result);
+// console.log("updated ans count"+result);
   }catch(error){
 console.log(error);
   }
@@ -71,7 +71,7 @@ console.log(error);
 export const deleteAnswer=async(req, res) =>{
 const {id:_id}=req.params;                    //id is question_id
 const {answerId, noOfAnswers,userId}=req.body;
-console.log('deleted que id is '+_id);
+// console.log('deleted que id is '+_id);
 if(!mongoose.Types.ObjectId.isValid(_id)){
   return res.status(404).send('question unavailable...');
 }

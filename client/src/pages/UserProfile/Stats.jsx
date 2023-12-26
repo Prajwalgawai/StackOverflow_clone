@@ -1,20 +1,24 @@
 import React from 'react'
 import {useDispatch, useSelector} from "react-redux";
+import { fetchMyQuestions } from '../../actions/question';
 
 
 
 const Stats = () => {
 const dispatch=useDispatch();
-const User = useSelector((state) => state.currentUserReducer);
+let User = useSelector((state) => state.currentUserReducer);
+User=User?.result?._id
 let answer_score=useSelector((state)=>state.getUser);
 answer_score=answer_score?.data?.answers;
 answer_score=answer_score?.length;
 let  question_score=useSelector((state)=>state.questionVoteScore);
 question_score=question_score.data;
-console.log("ans -socre is "+answer_score);
+// console.log("ans -socre is "+answer_score);
 
 const points=parseInt(question_score+(parseInt(answer_score/5))*5);
-const questionsList=useSelector(state=>state.questionsReducer);
+
+const questionsList=useSelector(state=>state.myquestionsReducers);
+// console.log("my questoins are"+JSON.stringify(questionsList));
 // const noOfHonourBadges=parseInt(answer_score/5);
 // const noOfSilverBadges=parseInt(noOfHonourBadges/10);                  //10 honour badge=1 silver badge.
 // const noOfGoldBadges=parseInt(noOfSilverBadges/10);                       //10 silver badge=1 gold badge.
@@ -24,7 +28,7 @@ const questionsList=useSelector(state=>state.questionsReducer);
 
   return (
     <div className='stats-div'>
-          <h1>stats</h1>
+          <h1>Stats of community</h1>
           <div className='stats-div-main'>
    <div className='stats-div-1'>
    <div className='stats-sub-div-2'>
@@ -42,7 +46,7 @@ const questionsList=useSelector(state=>state.questionsReducer);
     <p>answers</p>
     </div>
     <div className='stats-sub-div-2'>
-    <h3>{questionsList.data.length}</h3>
+    <h3>{questionsList?.data?.length}</h3>
     <p>questions</p>
     </div>
        </div>

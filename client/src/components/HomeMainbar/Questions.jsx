@@ -7,7 +7,8 @@ const Questions = ({question}) => {
 
 
     let theme=useSelector((state)=>state.fetchWeather);
-    theme="light";
+    // theme="light";
+    theme=theme?.data
 
   return (
 
@@ -22,7 +23,7 @@ const Questions = ({question}) => {
     <p>answers</p>
 </div>
 <div className="display-question-details">
-    <Link to={`/Questions/${question.id}`} className='question-title-link'>
+    <Link to={`/Questions/${question?._id}/user`} className='question-title-link'>
         {question.questionTitle} </Link>
         <div className="display-tags-time">
             <div className={`${theme!=="dark"?'display-tags':'display-tags-dark'}`}>

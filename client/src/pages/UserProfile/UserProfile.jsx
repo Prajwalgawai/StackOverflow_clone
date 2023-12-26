@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector,useDispatch } from "react-redux";
 import { useParams } from "react-router";
 import LeftSidebar from "../../components/LeftSidebar/LeftSideBar";
 import Avatar from "../../components/Avatar/Avatar";
@@ -11,9 +11,12 @@ import ProfileBio from "./ProfileBio";
 import Badges from "./Badges";
 import Stats from './Stats';
 import './UsersProfile.css';
-
+import {countUpvotedQuestions} from '../../actions/question';
+import {getUser} from '../../actions/users';
 
 const UserProfile = ({ slideIn, handleSlideIn }) => {
+const dispatch=useDispatch();
+
   const { id } = useParams();
   const users = useSelector((state) => state.usersReducer);
   const currentProfile = users.filter((user) => user._id === id)[0];
@@ -24,6 +27,10 @@ const handleSwitch=()=>{
 
 }
 
+useEffect(()=>{
+  dispatch(countUpvotedQuestions(id));
+  dispatch(getUser(id));
+}, [dispatch]);
 
 
   return (
@@ -69,7 +76,7 @@ const handleSwitch=()=>{
             <ProfileBio currentProfile={currentProfile}/>
             </div>
             <div className="profile_bio_badges">
-             <Stats/>
+             {/* <Stats/> */}
             <Badges/>
             </div>
             </div>

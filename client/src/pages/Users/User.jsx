@@ -7,10 +7,12 @@ import './Users.css';
 
 const User = ({user}) => {
   let theme=useSelector((state)=>state.fetchWeather);
-  theme="light";
+  // theme="light";
+  theme=theme?.data
+console.log("theme is "+JSON.stringify(theme?.data));
 const dispatch=useDispatch();
   const handleclick=(id)=>{
-    alert("user clicked");
+    // alert("user clicked");
     dispatch(countUpvotedQuestions(id));
     dispatch(getUser(id));
   }

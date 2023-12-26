@@ -8,11 +8,12 @@ import userRoutes from "./routes/users.js";
 import questionRoutes from './routes/Questions.js';
 import answerRoutes from './routes/Answers.js';
 
-// console.log(process.dotenv.uri);
 const app=express();
+
+
 dotenv.config();
-app.use(express.json({limit:"30mb", extended:true}));
-app.use(express.urlencoded({limit:"30mb", extended:true}));
+app.use(express.json({limit:"100000mb", extended:true}));
+app.use(express.urlencoded({limit:"100000mb", extended:true}));
 app.use(cors());
 
 app.get('/', (req, res)=>{

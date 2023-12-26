@@ -6,6 +6,7 @@ import {BrowserRouter} from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import AllRoutes from "./routes";
 import { fetchAllQuestions } from './actions/question';
+import {fetchMyQuestions} from './actions/question';
 import {fetchAllUsers} from './actions/users';
 import fetchWeather from './actions/fetchWeather.js';
 
@@ -15,13 +16,27 @@ useEffect(()=>{
 dispatch(fetchAllQuestions())
 dispatch(fetchAllUsers());
 dispatch(fetchWeather());
+
 }, [dispatch]);
 
+let User = useSelector((state) => state.currentUserReducer);
+User=User?.result?._id
+
+useEffect(()=>{
+  dispatch(fetchMyQuestions(User));
+},[dispatch, User]);
+
+
 let theme=useSelector((state)=>state.fetchWeather);
-theme="light";
+// theme="light";
+theme=theme?.data
+
 theme!=="dark"? document.querySelector("body").style.backgroundColor="" : document.querySelector("body").style.backgroundColor="hsl(210,3%,15%)"
 
-  return (
+
+const [ham, setHam]=("block");
+
+return (
     <div className="App">
       <BrowserRouter>
 <Navbar/>

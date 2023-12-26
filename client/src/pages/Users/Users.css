@@ -3,7 +3,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 30px;
-
 }
 
 .user-profile-link {
@@ -50,4 +49,7 @@
 
 .user-profile-link-dark h5 {
   margin: 0px 10px;
+}
+.home-container-1-dark{
+color:white;
 }

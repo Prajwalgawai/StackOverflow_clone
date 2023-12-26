@@ -6,7 +6,8 @@ import blackLogo from "../../assets/blackLogo.svg";
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 const Widget = () => {
    let theme=useSelector((state)=>state.fetchWeather);
-   theme="light";
+   // theme="light";
+   theme=theme?.data
   return (
     <div className={`${theme!=="dark"?'widget':'widget-dark'}`}>
       <h4>The overflow blog</h4>

@@ -4,7 +4,8 @@ const WidgetTags = () => {
     const tags=["c", 'css', "express", "firebase", "html", "java", "javascript", "mern", "mongodb", "mysql", "next.js", "node.js", "php", "python", "reacjs"];
   
     let theme=useSelector((state)=>state.fetchWeather);
-    theme="light";
+    // theme="light";
+    theme=theme?.data
     return (
     <div className={`${theme!=="dark"?'widget-tags':'widget-tags-dark'}`}>
          <h3>Watched tags</h3>

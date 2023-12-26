@@ -5,12 +5,16 @@ import LeftSidebar from "../../components/LeftSidebar/LeftSideBar";
 import RightSidebar from "../../components/RightSidebar/RightSidebar";
 import HomeMainbar from "../../components/HomeMainbar/HomeMainbar";
 const Home = () => {
+  let theme=useSelector((state)=>state.fetchWeather);
+  // theme="light";
+  theme=theme?.data;
 
 
   return (
-    <div className='home-container-1'>
+    <div className={`${theme!=="dark"?'home-container-1':'home-container-1-dark'}`}>
 <LeftSidebar />
-<div className="home-container-2">
+
+<div className={`${theme!=="dark"?'home-container-2':'home-container-2-dark'}`}>
 <HomeMainbar/>
 <RightSidebar/>
 </div>
