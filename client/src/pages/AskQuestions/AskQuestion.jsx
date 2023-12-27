@@ -23,21 +23,16 @@ const AskQuestion = () => {
   const User2 = useSelector((state) => state.currentUserReducer);
   const navigate = useNavigate();
   let theme = useSelector((state) => state.fetchWeather);
-  // theme = "light";
   theme=theme?.data
 
   useEffect(() => {
     const handleLinkClick = (e) => {
       let target = e.target;
 
-     
-
-      console.log("taget link is +"+target);
       if (target.tagName === "A") {
         e.preventDefault();
         const url = target.getAttribute("href");
         if (url) {
-          console.log("target"+url);
 window.open("/"+url, '_blank')
         }
       }
@@ -172,7 +167,6 @@ window.open("/"+url, '_blank')
         const codeBlockElement = document.createElement("pre");
         codeBlockElement.className = "code-block";
         codeBlockElement.textContent = selectedText;
-  
 
         range.deleteContents();
         range.insertNode(codeBlockElement);

@@ -10,14 +10,13 @@ let theme="";
         const { latitude, longitude } = position.coords;
 
         
-const apiKey = 'e907680e49fff342743146ee077a5564';
+const apiKey = 'e5ae6b671d291adcd16bbe098d43174f';
         const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
 
         axios.get(apiUrl)
           .then((response) => {
             const currentTemp = response.data.main.temp;
-            // setTemperature(currentTemp);
-
+            
             const sunriseTimestamp = response.data.sys.sunrise;
             const sunsetTimestamp = response.data.sys.sunset;
             const currentTimestamp = Math.floor(Date.now() / 1000);
@@ -27,7 +26,6 @@ const apiKey = 'e907680e49fff342743146ee077a5564';
             const badWeatherTypes = ['Rain', 'Snow', 'Thunderstorm', 'Fog', 'Haze', 'Dust'];
             for (const weatherCondition of weatherConditions) {
               if (badWeatherTypes.includes(weatherCondition.main)) {
-// console.log("it is bad weather");
  theme="dark";
                 break;
               }
@@ -35,12 +33,11 @@ const apiKey = 'e907680e49fff342743146ee077a5564';
 
             // Determine whether it's day or night
             if (currentTimestamp >= sunriseTimestamp && currentTimestamp <= sunsetTimestamp) {
-              // theme="light";
-              theme="dark";     //for testing else make it light
+              theme="light";
+             
             } else {
             theme="dark";
-            }
-theme="dark";       
+            }   
 
             dispatch({type:'setTemperature', payload:theme});  
 

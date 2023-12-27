@@ -8,9 +8,11 @@ export const getAllUsers=async(req,res)=>{
         allUsers.forEach(users=>{
             allUserDetails.push({_id:users._id, name:users.name, about:users.about, tags:users.tags, joinedOn:users.joinedOn, answers:users.answers});
         })
+      
         res.status(200).json(allUserDetails);
     }catch(error){
-       res.status(404).json({message:error.message});
+        console.log(error);
+       res.status(404).json({message:error?.message});
     }
 }
 
@@ -27,7 +29,7 @@ export const updateProfile=async(req, res)=>{
         const updatedProfile=await User.findByIdAndUpdate(_id, {$set:{'name':name, 'about':about, 'tags':tags}}, {new:true})//if we dont write new:true, then it will return the older record even though it will update the record in the database.
         res.status(200).json(updateProfile);
     }catch(error){
-
+        console.log(error);
 res.status(405).json({message:error.message});
     }
 }
