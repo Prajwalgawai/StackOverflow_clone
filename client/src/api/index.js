@@ -1,6 +1,6 @@
 import axios from "axios";
-const API=axios.create({baseURL:'http://localhost:1000'});
-// const API=axios.create({baseURL:'https://stackoverflow-prajwal.onrender.com'});
+// const API=axios.create({baseURL:'http://localhost:1000'});
+const API=axios.create({baseURL:'https://stackoverflow-prajwal.onrender.com'});
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("Profile")) {
