@@ -37,7 +37,9 @@ res.status(405).json({message:error.message});
 
 export const getUser=async(req, res)=>{
 const {id:_id}=req.params;
+console.log(_id);
 try{
+    
 const result=await User.findById(_id);
 res.status(200).json(result);
 

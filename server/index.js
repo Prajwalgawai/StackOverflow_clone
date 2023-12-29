@@ -17,10 +17,11 @@ app.use(express.urlencoded({limit:"100000mb", extended:true}));
 app.use(cors());
 
 app.get('/', (req, res)=>{
-    res.send("this is the stack overflow clone API")
+    res.send("this is the stack overflow clone API, Hii")
 })
 
 app.use('/user', userRoutes);
+
 app.use('/questions', questionRoutes);
 app.use('/answer', answerRoutes);
 

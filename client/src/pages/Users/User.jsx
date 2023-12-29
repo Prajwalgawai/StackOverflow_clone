@@ -9,13 +9,16 @@ const User = ({user}) => {
   let theme=useSelector((state)=>state.fetchWeather);
   // theme="light";
   theme=theme?.data
-console.log("theme is "+JSON.stringify(theme?.data));
+
 const dispatch=useDispatch();
+
   const handleclick=(id)=>{
-    // alert("user clicked");
+
     dispatch(countUpvotedQuestions(id));
     dispatch(getUser(id));
+
   }
+
   return (
   <Link to={`/Users/${user._id}`} className={`${theme!=="dark"?'user-profile-link':'user-profile-link-dark'}`}
   onClick={()=>{handleclick(user?._id)}}>

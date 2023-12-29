@@ -11,8 +11,10 @@ console.log(error);
 
 export const getUser=(id)=>async(dispatch)=>{
     try{
-const {data}=await api.getUser(id);
 
+
+const {data}=await api.getUser(id);
+console.log("🎂🎂🎂🎂🎂"+id);
 dispatch({type:'GET_USER_VIA_ID', payload:data});
     }catch(error){
         console.log(error);

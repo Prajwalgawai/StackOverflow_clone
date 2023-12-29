@@ -5,6 +5,8 @@ const Badges = () => {
   const dispatch=useDispatch();
   const User = useSelector((state) => state.currentUserReducer);
   let answer_score=useSelector((state)=>state.getUser);
+  // alert((JSON.stringify(answer_score)));
+
   answer_score=answer_score?.data?.answers;
   answer_score=answer_score?.length;
   let  question_score=useSelector((state)=>state.questionVoteScore);
@@ -14,6 +16,7 @@ const Badges = () => {
   let theme=useSelector((state)=>state.fetchWeather);
   // theme="light";
   theme=theme?.data;
+  
   
 
   const noOfHonourBadges=parseInt(answer_score/5);

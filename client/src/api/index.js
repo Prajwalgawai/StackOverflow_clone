@@ -30,6 +30,10 @@ export const deleteAnswer=(id, answerId, noOfAnswers, userId)=>API.patch(`/answe
 
 
 export const fetchAllUsers=()=>API.get('/user/getAllUsers');
-export const getUser=(id)=>API.get(`/user/getUser/${id}`);
+export const getUser=(id)=>API.get(`/user/getUser/${id}`).then((re)=>{
+  console.log("getUser in api"+re);
+}).catch((err)=>{
+  console.log("get catch user"+err);
+})
 
 export const updateProfile=(id, updateData)=>API.patch(`/user/update/${id}`, updateData);

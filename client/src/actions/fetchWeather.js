@@ -50,10 +50,18 @@ const apiKey = 'e5ae6b671d291adcd16bbe098d43174f';
           });
       },
       (error) => {
+        let time=new Date();
+        if(time>=17){
+          dispatch({type:'setTemperature', payload:"dark"});  
+        }else{
+          dispatch({type:'setTemperature', payload:"light"}); 
+        }
         console.error('Error getting user location:', error);
       }
     );
   } else {
+   
+
     console.log('Geolocation is not supported by this browser.');
   }
   
