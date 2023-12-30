@@ -37,13 +37,15 @@ res.status(405).json({message:error.message});
 
 export const getUser=async(req, res)=>{
 const {id:_id}=req.params;
-console.log(_id);
+console.log("id is "+_id);
 try{
     
 const result=await User.findById(_id);
+console.log("result is"+result);
 res.status(200).json(result);
 
-}catch{
+}catch(err){
+    console.log("errors"+err);
     res.status(405).json({message:error.message});
 }
 }

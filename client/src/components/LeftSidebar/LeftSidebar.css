@@ -89,3 +89,6 @@ filter:invert(100%);
         display: block;
     }
 }
+.left-sidebar-dark{
+    width:164px;
+}

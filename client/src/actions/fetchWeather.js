@@ -46,12 +46,21 @@ const apiKey = 'e5ae6b671d291adcd16bbe098d43174f';
 
           })
           .catch((error) => {
+            let time=new Date();
+            time = time.getHours();
+        if(time>=18){
+          dispatch({type:'setTemperature', payload:"dark"});  
+        }else{
+          dispatch({type:'setTemperature', payload:"light"}); 
+        }
             console.error('Error fetching weather data:', error);
           });
       },
       (error) => {
         let time=new Date();
-        if(time>=17){
+        time = time.getHours();
+        
+        if(time>=18){
           dispatch({type:'setTemperature', payload:"dark"});  
         }else{
           dispatch({type:'setTemperature', payload:"light"}); 

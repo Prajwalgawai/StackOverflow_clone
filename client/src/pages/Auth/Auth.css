@@ -137,10 +137,13 @@ margin:3%;
 }
 
 @media (max-width:800px){
+    
     .auth-section{
 flex-direction: column;
 min-height: 107vh;
+margin-top:67px;
     }
+
     .auth-section-dark{
         flex-direction: column;
         min-height: 107vh;
@@ -163,6 +166,7 @@ min-height: 107vh;
     .auth-section-dark{
         flex-direction: column;
         min-height: 107vh;
+        margin-top:67px;
             }
             .cont-1-dark{
                 order: 2;
@@ -175,6 +179,8 @@ min-height: 107vh;
                 text-align: center;
                 margin:0px;
             }
+
+
 }
 
 .auth-section-dark form{

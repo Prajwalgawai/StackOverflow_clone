@@ -2,6 +2,7 @@ import axios from "axios";
 // const API=axios.create({baseURL:'http://localhost:1000'});
 const API=axios.create({baseURL:'https://stackoverflow-prajwal.onrender.com'});
 
+
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("Profile")) {
     req.headers.authorization = `Bearer ${
@@ -30,10 +31,6 @@ export const deleteAnswer=(id, answerId, noOfAnswers, userId)=>API.patch(`/answe
 
 
 export const fetchAllUsers=()=>API.get('/user/getAllUsers');
-export const getUser=(id)=>API.get(`/user/getUser/${id}`).then((re)=>{
-  console.log("getUser in api"+re);
-}).catch((err)=>{
-  console.log("get catch user"+err);
-})
+export const getUser=(id)=>API.get(`/user/getUser/${id}`);
 
 export const updateProfile=(id, updateData)=>API.patch(`/user/update/${id}`, updateData);
