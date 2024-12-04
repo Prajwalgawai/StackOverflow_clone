@@ -36,6 +36,5 @@ mongoose.connect(CONNECTION_URL).then(()=>{
         console.log(`server running on port ${PORT}`)
     })
 }).catch((err)=>{
-
     console.log(err.message)
 })

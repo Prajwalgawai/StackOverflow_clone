@@ -7,6 +7,7 @@ import { jwtDecode as decode } from "jwt-decode";
 import "./Navbar.css";
 import '../../App.css';
 import Logo from "../../assets/logo.png";
+import wpshubham from "../../assets/wpshubham.jpg";
 import { setCurrentUser } from '../../actions/currentUser';
 import search from '../../assets/search.svg'
 import Avatar from "../../components/Avatar/Avatar";
@@ -63,7 +64,7 @@ const activeHamberger=()=>{
         <img src='./bars-solid.svg' alt="" />
         </Link>
 <Link to='/' className={`${theme!=="dark"?'nav-item nav-logo':'nav-item-dark nav-logo-dark'}`} >
-    <img src={Logo} alt="logo" width="150px" height="30px"/>
+    <img src={wpshubham} alt="logo" width="60px" height="60px"/>
 </Link>
 <div className='about-pr-tm'>
 <Link to='/'  className={`${theme!=="dark"?'nav-item nav-btn':'nav-item-dark nav-btn-dark'}`}>
